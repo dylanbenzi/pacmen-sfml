@@ -3,8 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
-class TileMap : public sf::Drawable, public sf::Transformable
-{
+class TileMap : public sf::Drawable, public sf::Transformable {
 public:
     bool load(const std::filesystem::path& tileset, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height)
     {
@@ -83,13 +82,13 @@ int main()
     };
 
     TileMap map;
-    if (!map.load("src/tileset.png", {32, 32}, level.data(), 16, 8))
+    if (!map.load("assets/tileset.png", {32, 32}, level.data(), 16, 8))
         return -1;
 
     auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Pacmen");
     window.setFramerateLimit(144);
 
-    sf::CircleShape pacman(25.0f);
+    sf::CircleShape pacman(16.0f);
     pacman.setFillColor(sf::Color(255, 255, 0));
 
     while (window.isOpen())
