@@ -6,15 +6,15 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include <string>
-#include "TileMapLoader.h"
+//#include "TileMapLoader.h"
 #include "TileMap.h"
 
 int main()
 {
     // Load tilemap data from JSON
-    TileMapData tilemapData;
+    TileMap mazeMap;
     try {
-        tilemapData = TileMapLoader::loadFromJSON("util/pacmantiles32.json");
+        mazeMap.loadFromJSON("util/pacmantiles32.json");
     } catch (const std::exception& e) {
         std::cerr << "Error loading tilemap: " << e.what() << std::endl;
         return -1;
@@ -22,10 +22,10 @@ int main()
 
     TileMap map;
     if (!map.load("assets/maze32.png",
-                  {tilemapData.tileSize, tilemapData.tileSize},
-                  tilemapData.tiles.data(),
-                  tilemapData.width,
-                  tilemapData.height))
+                  {mazeMap.tileSize, mazeMap.tileSize},
+                  mazeMap.tiles.data(),
+                  mazeMap.width,
+                  mazeMap.height))
         return -1;
 
     auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Pacmen");
@@ -38,7 +38,7 @@ int main()
 
     sf::CircleShape pacman(20.0f);
     pacman.setFillColor(sf::Color(255, 255, 0));
-    pacman.move({32, 32});
+    pacman.move({(mazeMap.tileSize * 1.0f), (mazeMap.tileSize * 1.0f)});
 
     int x = 0;
     int y = 0;
@@ -48,6 +48,11 @@ int main()
 
     sf::Text tileY(bitFont, "0");
     tileY.move({1100, 100});
+
+    sf::Text tileId(bitFont, "");
+    tileId.move({1000, 150});
+
+    int tileInt = 0;
 
     while (window.isOpen())
     {
@@ -59,12 +64,13 @@ int main()
             }
         }
 
-        window.clear();
+        window.clear(); 
 
         window.draw(map);
         window.draw(currTile);
         window.draw(tileX);
         window.draw(tileY);
+        window.draw(tileId);
 
         window.draw(pacman);
 
