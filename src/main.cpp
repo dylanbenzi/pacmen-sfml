@@ -64,6 +64,9 @@ int main()
             }
         }
 
+        int intTileId = mazeMap.getTileId(0, 0);
+        tileId.setString(std::to_string(intTileId));
+
         window.clear(); 
 
         window.draw(map);

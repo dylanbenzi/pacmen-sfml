@@ -132,7 +132,7 @@ public:
         return true;
     }
 
-    int convert2DCoords(int row, int col, int width) {
+    int convert2DCoords(int row, int col) {
         return col + (row * width);
     }
 
@@ -141,9 +141,11 @@ public:
         //tileX increases going right
         //tileY increases going down
         
-        int index = convert2DCoords(tileY, tileX, 28);
+        int index = convert2DCoords(tileY, tileX);
 
-        return 0;
+        int tileId = tiles.at(index);
+
+        return tileId;
     }
 
 private:
