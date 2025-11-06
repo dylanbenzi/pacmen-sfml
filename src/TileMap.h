@@ -1,6 +1,7 @@
 #ifndef TILEMAP_H
 #define TILEMAP_H
 
+#include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include <fstream>
@@ -136,6 +137,10 @@ public:
         return col + (row * width);
     }
 
+    int convert2DCoords(sf::Vector2i vec) {
+        return vec.y + (vec.x * width);
+    }
+
     int getTileId(int tileX, int tileY) {
         //tileX and tileY start from top left 0,0
         //tileX increases going right
@@ -147,6 +152,23 @@ public:
 
         return tileId;
     }
+
+    int getTileId(sf::Vector2i vec) {
+        int index = convert2DCoords(vec);
+
+        int tileId = tiles.at(index);
+
+        return tileId;
+    }
+
+    bool isLegalTile(sf::Vector2i vec) {
+        int index = convert2DCoords(vec);
+
+        int tileId = tiles.at(index);
+
+        return tileId == 92;
+    }
+
 
 private:
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override

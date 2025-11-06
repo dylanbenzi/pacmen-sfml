@@ -84,12 +84,12 @@ int main()
 
     sf::Vector2f pacmanCenter;
 
-    sf::Vector2f pacmanVelo;
+    sf::Vector2i pacmanVelo;
 
-    sf::Vector2f transformVeloUp({0, -1});
-    sf::Vector2f transformVeloDown({0, 1});
-    sf::Vector2f transformVeloRight({1, 0});
-    sf::Vector2f transformVeloLeft({-1, 0});
+    sf::Vector2i transformVeloUp({0, -1});
+    sf::Vector2i transformVeloDown({0, 1});
+    sf::Vector2i transformVeloRight({1, 0});
+    sf::Vector2i transformVeloLeft({-1, 0});
 
     float pacmanSpeed = 5;
 
@@ -165,7 +165,13 @@ int main()
 
         tileId.setString(std::to_string(mazeMap.getTileId(pacmanTile.x, pacmanTile.y)));
 
-        pinkPacmanSpriteOne.move(pacmanSpeed * pacmanVelo);
+        //if (mazeMap.isLegalTile(pacmanTile + pacmanVelo)) {
+        //    sf::Vector2f pacmanVeloFloat = {pacmanVelo.x * 1.0f, pacmanVelo.y * 1.0f};
+        //    pinkPacmanSpriteOne.move(pacmanSpeed * pacmanVeloFloat);
+        //}
+
+        sf::Vector2f pacmanVeloFloat = {pacmanVelo.x * 1.0f, pacmanVelo.y * 1.0f};
+        pinkPacmanSpriteOne.move(pacmanSpeed * pacmanVeloFloat);
 
         window.display();
     }
