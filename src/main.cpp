@@ -59,10 +59,25 @@ int main()
     sf::Text pacCentY(bitFont, "");
     pacCentY.move({1000, 300});
 
+    sf::Text tileIdText(bitFont, "Tile ID: ");
+    tileIdText.move({1000, 350});
+
+    sf::Text tileId(bitFont, "");
+    tileId.move({1000, 400});
+
     const sf::Texture pinkPacmanMovement("assets/pink_pac_man_movement48.png");
     sf::Sprite pinkPacmanSpriteOne(pinkPacmanMovement, {{0, 0}, {48, 48}});
 
     sf::Vector2f pacmanCenter({0, 0});
+
+    sf::Vector2f pacmanVelo({0, 0});
+
+    sf::Vector2f transformVeloUp({0, -1});
+    sf::Vector2f transformVeloDown({0, 1});
+    sf::Vector2f transformVeloRight({1, 0});
+    sf::Vector2f transformVeloLeft({-1, 0});
+
+    float pacmanSpeed = 5;
 
     while (window.isOpen())
     {
@@ -86,23 +101,35 @@ int main()
         window.draw(pacCent);
         window.draw(pacCentX);
         window.draw(pacCentY);
+        window.draw(tileIdText);
+        window.draw(tileId);
 
         pacmanCenter = {pinkPacmanSpriteOne.getPosition().x + 16.0f, pinkPacmanSpriteOne.getPosition().y + 16.0f};
 
+        sf::Vector2i pacmanTile = {(int)std::round((pacmanCenter.x - 16) / 32), (int)std::round((pacmanCenter.y - 16) / 32)};
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up)) {
-            pinkPacmanSpriteOne.move({0, -5.0f});
+            //pinkPacmanSpriteOne.move({0, -5.0f});
+            pacmanVelo = transformVeloUp;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)) {
-            pinkPacmanSpriteOne.move({-5.0f, 0});
+            //pinkPacmanSpriteOne.move({-5.0f, 0});
+            pacmanVelo = transformVeloLeft;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)|| sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down)) {
-            pinkPacmanSpriteOne.move({0, 5.0f});
+            //pinkPacmanSpriteOne.move({0, 5.0f});
+            pacmanVelo = transformVeloDown;
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)) {
-            pinkPacmanSpriteOne.move({5.0f, 0});
+            //pinkPacmanSpriteOne.move({5.0f, 0});
+            pacmanVelo = transformVeloRight;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
+            pacmanVelo = {0, 0};
         }
 
         // center coord 16, 16
@@ -113,11 +140,15 @@ int main()
         // tile 2, 2
         // (cent - 16) / 32
 
-        tileX.setString(std::to_string(std::round((pacmanCenter.x - 16) / 32)));
-        tileY.setString(std::to_string(std::round((pacmanCenter.y - 16) / 32)));
+        tileX.setString(std::to_string(pacmanTile.x));
+        tileY.setString(std::to_string(pacmanTile.y));
 
         pacCentX.setString(std::to_string(pacmanCenter.x));
         pacCentY.setString(std::to_string(pacmanCenter.y));
+
+        tileId.setString(std::to_string(mazeMap.getTileId(pacmanTile.x, pacmanTile.y)));
+
+        pinkPacmanSpriteOne.move(pacmanSpeed * pacmanVelo);
 
         window.display();
     }
