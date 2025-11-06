@@ -30,7 +30,7 @@ int main()
         return -1;
 
     auto window = sf::RenderWindow(sf::VideoMode({1920u, 1080u}), "Pacmen");
-    window.setFramerateLimit(144);
+    window.setFramerateLimit(60);
 
     const sf::Font bitFont("assets/PressStart2P.ttf");
 
