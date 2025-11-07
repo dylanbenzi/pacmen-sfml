@@ -122,7 +122,7 @@ int main()
         window.draw(movementDirText);
         window.draw(movementDir);
 
-        window.draw(pacman);
+        //window.draw(pacman);
 
         pacmanCenter = {pinkPacmanSpriteOne.getPosition().x + 16.0f, pinkPacmanSpriteOne.getPosition().y + 16.0f};
 
@@ -176,7 +176,7 @@ int main()
 
         sf::Vector2f pacmanVeloFloat = {pacmanVelo.x * 1.0f, pacmanVelo.y * 1.0f};
         pinkPacmanSpriteOne.move(pacmanSpeed * pacmanVeloFloat);
-        pacman.move(pacmanSpeed * pacmanVeloFloat);
+        //pacman.move(pacmanSpeed * pacmanVeloFloat);
 
         window.display();
     }
