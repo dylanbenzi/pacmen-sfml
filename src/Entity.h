@@ -1,7 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "TileMap.h"
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/PrimitiveType.hpp>
 #include <SFML/Graphics/Rect.hpp>
@@ -23,13 +22,13 @@ enum class MovementDir {
 
 class Entity : public sf::Drawable, public sf::Transformable {
 public:
-    Entity(TileMap& map) : map(map) {};
+    //Entity(TileMap& map) : map(map) {};
 
     bool loadTexture(const std::filesystem::path& texturePath, sf::Vector2u graphicTileSize, int tiles);
 
     void setTextureFrame(const sf::IntRect& rectangle);
 protected:
-    TileMap map;
+    //TileMap map;
 
     sf::VertexArray vertexArray;
     sf::Texture texture;
