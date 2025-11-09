@@ -1,15 +1,17 @@
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <iostream>
 
 #include "Game.h"
 #include "MazeMap.h"
 #include "ResourceManager.h"
+#include "Entity.h"
 
 void Game::run() {
     ResourceManager resources;
     MazeMap map;
+    Entity pacman;
 
     resources.loadTexture("all_textures", "assets/all_textures.png");
-
     // resize all_textures to 32px
     resources.resizeTexture("all_textures", 32);
     // Collision data: 1=wall, 0=path
@@ -27,6 +29,9 @@ void Game::run() {
                  {912, 0},
                  {0, 0});
 
+    pacman.setAnimationTiles(resources.getTexture("all_textures"), {1820, 0}, "right_walking", {60, 60}, 2, 0);
+    pacman.setActiveSprite("right_walking", 0);
+
     auto window = sf::RenderWindow(sf::VideoMode(windowRes), windowName);
     window.setFramerateLimit(maxFPS);
 
@@ -43,6 +48,8 @@ void Game::run() {
         window.clear(); 
 
         window.draw(map);
+
+        window.draw(*pacman.getActiveSprite());
 
         //window.draw();
 
