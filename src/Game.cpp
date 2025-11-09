@@ -4,7 +4,8 @@
 #include "Game.h"
 #include "MazeMap.h"
 #include "ResourceManager.h"
-#include "Entity.h"
+#include "Pacman.h"
+#include "Ghost.h"
 
 void Game::run() {
     ResourceManager resources;
@@ -28,7 +29,12 @@ void Game::run() {
                  {912, 0},
                  {0, 0});
 
-    Entity pacman;
+    Pacman pacman;
+
+    Ghost blinky;
+    Ghost pinky;
+    Ghost inky;
+    Ghost clyde;
 
     pacman.setAnimationTiles(resources.getTexture("all_textures"), {1824, 0}, "right_walking", {60, 60}, 2, 0);
     pacman.setAnimationTiles(resources.getTexture("all_textures"), {1824, 64}, "left_walking", {60, 60}, 2, 0);
@@ -38,15 +44,11 @@ void Game::run() {
     pacman.setAnimationTiles(resources.getTexture("all_textures"), {2016, 0}, "death", {60, 60}, 11, 4);
     pacman.setActiveSprite("static", 0);
 
-    Entity blinky;
-
     blinky.setAnimationTiles(resources.getTexture("all_textures"), {1824, 256}, "right_walking", {60, 60}, 2, 4);
     blinky.setAnimationTiles(resources.getTexture("all_textures"), {1952, 256}, "left_walking", {60, 60}, 2, 4);
     blinky.setAnimationTiles(resources.getTexture("all_textures"), {2080, 256}, "up_walking", {60, 60}, 2, 4);
     blinky.setAnimationTiles(resources.getTexture("all_textures"), {2208, 256}, "down_walking", {60, 60}, 2, 4);
     blinky.setActiveSprite("right_walking", 0);
-
-    Entity pinky;
 
     pinky.setAnimationTiles(resources.getTexture("all_textures"), {1824, 320}, "right_walking", {60, 60}, 2, 4);
     pinky.setAnimationTiles(resources.getTexture("all_textures"), {1952, 320}, "left_walking", {60, 60}, 2, 4);
@@ -54,15 +56,11 @@ void Game::run() {
     pinky.setAnimationTiles(resources.getTexture("all_textures"), {2208, 320}, "down_walking", {60, 60}, 2, 4);
     pinky.setActiveSprite("right_walking", 0);
 
-    Entity inky;
-
     inky.setAnimationTiles(resources.getTexture("all_textures"), {1824, 384}, "right_walking", {60, 60}, 2, 4);
     inky.setAnimationTiles(resources.getTexture("all_textures"), {1952, 384}, "left_walking", {60, 60}, 2, 4);
     inky.setAnimationTiles(resources.getTexture("all_textures"), {2080, 384}, "up_walking", {60, 60}, 2, 4);
     inky.setAnimationTiles(resources.getTexture("all_textures"), {2208, 384}, "down_walking", {60, 60}, 2, 4);
     inky.setActiveSprite("right_walking", 0);
-
-    Entity clyde;
 
     clyde.setAnimationTiles(resources.getTexture("all_textures"), {1824, 448}, "right_walking", {60, 60}, 2, 4);
     clyde.setAnimationTiles(resources.getTexture("all_textures"), {1952, 448}, "left_walking", {60, 60}, 2, 4);
