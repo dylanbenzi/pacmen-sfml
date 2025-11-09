@@ -11,13 +11,13 @@ void Game::run() {
     ResourceManager resources;
     MazeMap map;
 
-    resources.loadTexture("all_textures", "assets/all_textures_transparent.png");
+    resources.loadTexture("all_textures", "assets/textures/all_textures_transparent.png");
     // resize all_textures to 32px
     resources.resizeTexture("all_textures", 32);
     // Collision data: 1=wall, 0=path
-    resources.loadMap("mazeMap", "assets/maze.txt");
+    resources.loadMap("mazeMap", "assets/game/maze.txt");
     // Pellet data: 0=none, 1=pellet, 2=power
-    resources.loadMap("pelletMap", "assets/pellets.txt");
+    resources.loadMap("pelletMap", "assets/game/pellets.txt");
 
     // Texture layout: [Pellet Maze Image] + gap (16px) + [Base Maze Image]
     // Original: 224px (28*8) + 4px gap at 8px tiles
