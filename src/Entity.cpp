@@ -46,17 +46,22 @@ void Entity::move(MovementDir dir) {
         case MovementDir::UP:
             activeSprite->move(movementSpeed.componentWiseMul({0, -1}));
             this->setPosition(activeSprite->getPosition());
+            break;
         case MovementDir::DOWN:
             activeSprite->move(movementSpeed.componentWiseMul({0, 1}));
             this->setPosition(activeSprite->getPosition());
+            break;
         case MovementDir::LEFT:
             activeSprite->move(movementSpeed.componentWiseMul({-1, 0}));
             this->setPosition(activeSprite->getPosition());
+            break;
         case MovementDir::RIGHT:
             activeSprite->move(movementSpeed.componentWiseMul({1, 0}));
             this->setPosition(activeSprite->getPosition());
+            break;
         case MovementDir::STATIC:
             activeSprite->move(movementSpeed.componentWiseMul({0, 0}));
             this->setPosition(activeSprite->getPosition());
+            break;
     };
 };

@@ -141,8 +141,6 @@ void Game::run() {
 
         window.draw(*pacman.getActiveSprite());
 
-        std::cout << pacman.getPosition().x << ", " << pacman.getPosition().y << "\n";
-
         //window.draw();
 
         window.display();
