@@ -4,6 +4,7 @@
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <map>
+#include <string>
 #include <vector>
 #include <filesystem>
 #include <memory>
@@ -41,6 +42,10 @@ public:
 
     sf::SoundBuffer* getSound(const std::string& soundName) {
         return &sounds[soundName];
+    };
+
+    sf::Font& getFont(const std::string& fontName) {
+        return fonts[fontName];
     };
 
     //load gameplay info

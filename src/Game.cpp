@@ -3,6 +3,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include <SFML/Audio.hpp>
+#include <string>
 
 #include "Game.h"
 #include "MazeMap.h"
@@ -21,6 +22,8 @@ void Game::run() {
     resources.loadMap("mazeMap", "assets/game/maze.txt");
     // Pellet data: 0=none, 1=pellet, 2=power
     resources.loadMap("pelletMap", "assets/game/pellets.txt");
+
+    resources.loadFont("bitFont", "assets/fonts/PressStart2P.ttf");
 
     resources.loadSound("credit", "assets/sounds/credit.wav");
     resources.loadSound("death_0", "assets/sounds/death_0.wav");
@@ -56,6 +59,7 @@ void Game::run() {
                  32,
                  {912, 0},
                  {0, 0});
+
 
     Pacman pacman;
 
@@ -113,6 +117,20 @@ void Game::run() {
     sf::Clock clock;
 
     sf::Time initialGameplayPause;
+
+    int score = 0;
+    sf::Font bitFont = resources.getFont("bitFont");
+    sf::Text scoreText(bitFont);
+    scoreText.setString(std::to_string(score));
+    scoreText.setPosition({16, 32 * 31 + 16});
+
+    sf::Sprite pacmanLifeOne(resources.getTexture("all_textures"), {{2340, 68}, {52, 52}});
+    pacmanLifeOne.setOrigin({52, 0});
+    pacmanLifeOne.setPosition({32 * 28, 32 * 31});
+    
+    sf::Sprite pacmanLifeTwo(resources.getTexture("all_textures"), {{2340, 68}, {52, 52}});
+    pacmanLifeTwo.setOrigin({52, 0});
+    pacmanLifeTwo.setPosition({30 * 28, 32 * 31});
 
     while (window.isOpen())
     {
@@ -191,6 +209,8 @@ void Game::run() {
 
             if (map.hasPellet(currentPacmanTile.x, currentPacmanTile.y)) {
                 map.eatPellet(currentPacmanTile.x, currentPacmanTile.y);
+                score += 10;
+                scoreText.setString(std::to_string(score));
 
                 if (pelletSoundCount % 2) {
                     pellet1.play();
@@ -204,8 +224,13 @@ void Game::run() {
         }
 
         window.clear();
+
         window.draw(map);
         window.draw(pacman);
+        window.draw(scoreText);
+        window.draw(pacmanLifeOne);
+        window.draw(pacmanLifeTwo);
+
         window.display();
     }
 
