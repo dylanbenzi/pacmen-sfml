@@ -1,0 +1,847 @@
+{
+  "gameConstants": {
+    "baseSpeedPixelsPerSecond": 75.75757625,
+    "dotPoints": 10,
+    "energizerPoints": 50,
+    "ghostEatenPoints": [200, 400, 800, 1600],
+    "frameRate": 60.606061,
+    "pacmanEatDotFrames": 1,
+    "pacmanEatEnergizerFrames": 3
+  },
+  "bonusFruit": {
+    "appearAfterDots": [70, 170],
+    "minDurationSeconds": 9,
+    "maxDurationSeconds": 10,
+    "symbols": {
+      "cherry": 100,
+      "strawberry": 300,
+      "peach": 500,
+      "apple": 700,
+      "grape": 1000,
+      "galaxian": 2000,
+      "bell": 3000,
+      "key": 5000
+    }
+  },
+  "levelSpecifications": [
+    {
+      "level": 1,
+      "bonusSymbol": "cherry",
+      "bonusPoints": 100,
+      "pacManSpeed": 0.80,
+      "pacManDotsSpeed": 0.71,
+      "ghostSpeed": 0.75,
+      "ghostTunnelSpeed": 0.40,
+      "elroy1DotsLeft": 20,
+      "elroy1Speed": 0.80,
+      "elroy2DotsLeft": 10,
+      "elroy2Speed": 0.85,
+      "frightPacManSpeed": 0.90,
+      "frightPacManDotsSpeed": 0.79,
+      "frightGhostSpeed": 0.50,
+      "frightTimeSeconds": 6,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 30,
+        "clyde": 60
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 4
+    },
+    {
+      "level": 2,
+      "bonusSymbol": "strawberry",
+      "bonusPoints": 300,
+      "pacManSpeed": 0.90,
+      "pacManDotsSpeed": 0.79,
+      "ghostSpeed": 0.85,
+      "ghostTunnelSpeed": 0.45,
+      "elroy1DotsLeft": 30,
+      "elroy1Speed": 0.90,
+      "elroy2DotsLeft": 15,
+      "elroy2Speed": 0.95,
+      "frightPacManSpeed": 0.95,
+      "frightPacManDotsSpeed": 0.83,
+      "frightGhostSpeed": 0.55,
+      "frightTimeSeconds": 5,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1033},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 50
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 4
+    },
+    {
+      "level": 3,
+      "bonusSymbol": "peach",
+      "bonusPoints": 500,
+      "pacManSpeed": 0.90,
+      "pacManDotsSpeed": 0.79,
+      "ghostSpeed": 0.85,
+      "ghostTunnelSpeed": 0.45,
+      "elroy1DotsLeft": 40,
+      "elroy1Speed": 0.90,
+      "elroy2DotsLeft": 20,
+      "elroy2Speed": 0.95,
+      "frightPacManSpeed": 0.95,
+      "frightPacManDotsSpeed": 0.83,
+      "frightGhostSpeed": 0.55,
+      "frightTimeSeconds": 4,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1033},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 4
+    },
+    {
+      "level": 4,
+      "bonusSymbol": "peach",
+      "bonusPoints": 500,
+      "pacManSpeed": 0.90,
+      "pacManDotsSpeed": 0.79,
+      "ghostSpeed": 0.85,
+      "ghostTunnelSpeed": 0.45,
+      "elroy1DotsLeft": 40,
+      "elroy1Speed": 0.90,
+      "elroy2DotsLeft": 20,
+      "elroy2Speed": 0.95,
+      "frightPacManSpeed": 0.95,
+      "frightPacManDotsSpeed": 0.83,
+      "frightGhostSpeed": 0.55,
+      "frightTimeSeconds": 3,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 7},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1033},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 4
+    },
+    {
+      "level": 5,
+      "bonusSymbol": "apple",
+      "bonusPoints": 700,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 40,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 20,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 2,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 6,
+      "bonusSymbol": "apple",
+      "bonusPoints": 700,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 50,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 25,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 5,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 7,
+      "bonusSymbol": "grape",
+      "bonusPoints": 1000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 50,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 25,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 2,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 8,
+      "bonusSymbol": "grape",
+      "bonusPoints": 1000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 50,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 25,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 2,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 9,
+      "bonusSymbol": "galaxian",
+      "bonusPoints": 2000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 60,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 30,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 1,
+      "numFlashes": 3,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 10,
+      "bonusSymbol": "galaxian",
+      "bonusPoints": 2000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 60,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 30,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 5,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 11,
+      "bonusSymbol": "bell",
+      "bonusPoints": 3000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 60,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 30,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 2,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 12,
+      "bonusSymbol": "bell",
+      "bonusPoints": 3000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 80,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 40,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 1,
+      "numFlashes": 3,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 13,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 80,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 40,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 1,
+      "numFlashes": 3,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 14,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 80,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 40,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 3,
+      "numFlashes": 5,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 15,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 100,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 50,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 1,
+      "numFlashes": 3,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 16,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 100,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 50,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 1,
+      "numFlashes": 3,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 17,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 100,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 50,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": null,
+      "frightPacManDotsSpeed": null,
+      "frightGhostSpeed": null,
+      "frightTimeSeconds": null,
+      "numFlashes": null,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 18,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 100,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 50,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": 1.00,
+      "frightPacManDotsSpeed": 0.87,
+      "frightGhostSpeed": 0.60,
+      "frightTimeSeconds": 1,
+      "numFlashes": 3,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 19,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 120,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 60,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": null,
+      "frightPacManDotsSpeed": null,
+      "frightGhostSpeed": null,
+      "frightTimeSeconds": null,
+      "numFlashes": null,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": 20,
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 1.00,
+      "pacManDotsSpeed": 0.87,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 120,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 60,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": null,
+      "frightPacManDotsSpeed": null,
+      "frightGhostSpeed": null,
+      "frightTimeSeconds": null,
+      "numFlashes": null,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    },
+    {
+      "level": "21+",
+      "bonusSymbol": "key",
+      "bonusPoints": 5000,
+      "pacManSpeed": 0.90,
+      "pacManDotsSpeed": 0.79,
+      "ghostSpeed": 0.95,
+      "ghostTunnelSpeed": 0.50,
+      "elroy1DotsLeft": 120,
+      "elroy1Speed": 1.00,
+      "elroy2DotsLeft": 60,
+      "elroy2Speed": 1.05,
+      "frightPacManSpeed": null,
+      "frightPacManDotsSpeed": null,
+      "frightGhostSpeed": null,
+      "frightTimeSeconds": null,
+      "numFlashes": null,
+      "scatterChaseTiming": [
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 20},
+        {"mode": "scatter", "duration": 5},
+        {"mode": "chase", "duration": 1037},
+        {"mode": "scatter", "duration": 0.01666667},
+        {"mode": "chase", "duration": "indefinite"}
+      ],
+      "ghostHouseDotLimits": {
+        "pinky": 0,
+        "inky": 0,
+        "clyde": 0
+      },
+      "globalDotCounterReleasePoints": {
+        "pinky": 7,
+        "inky": 17,
+        "clyde": 32
+      },
+      "ghostHouseTimerSeconds": 3
+    }
+  ]
+}
