@@ -130,7 +130,15 @@ void Game::run() {
     
     sf::Sprite pacmanLifeTwo(resources.getTexture("all_textures"), {{2340, 68}, {52, 52}});
     pacmanLifeTwo.setOrigin({52, 0});
-    pacmanLifeTwo.setPosition({30 * 28, 32 * 31});
+    pacmanLifeTwo.setPosition({32 * 26.5, 32 * 31});
+
+    sf::Sprite fruitOne(resources.getTexture("all_textures"), {{1956, 192}, {60, 60}});
+    fruitOne.setOrigin({60, 0});
+    fruitOne.setPosition({32 * 16, 32 * 31});
+
+    sf::Sprite fruitTwo(resources.getTexture("all_textures"), {{1956, 192}, {60, 60}});
+    fruitTwo.setOrigin({60, 0});
+    fruitTwo.setPosition({32 * 14, 32 * 31});
 
     while (window.isOpen())
     {
@@ -230,6 +238,8 @@ void Game::run() {
         window.draw(scoreText);
         window.draw(pacmanLifeOne);
         window.draw(pacmanLifeTwo);
+        window.draw(fruitOne);
+        window.draw(fruitTwo);
 
         window.display();
     }
