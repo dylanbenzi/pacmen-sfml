@@ -27,7 +27,7 @@ private:
 
     int scaleFactor = 4;
 
-    sf::Vector2u windowRes = {1920, 1080};
+    sf::Vector2u windowRes = {896, 1080};
     std::string windowName = "Pacmen";
 };
 
