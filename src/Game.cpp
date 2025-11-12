@@ -213,6 +213,72 @@ void Game::run() {
                     pacman.queueDirection(MovementDir::STATIC);
                 }
 
+                MovementDir queued = pacman.getQueuedDirection();
+                if (queued != MovementDir::STATIC && queued != pacman.getCurrentDirection()) {
+                    sf::Vector2f currentPos = pacman.getPosition();
+                    sf::Vector2i currentTile = map.getTileCoords(currentPos);
+
+                    const float corneringTolerance = 4.0f;
+                    const float halfTile = tileSize / 2.0f;
+                    bool withinTolerance = false;
+
+                    if (queued == MovementDir::UP || queued == MovementDir::DOWN) {
+                        float tileCenterX = currentTile.x * tileSize + halfTile;
+                        withinTolerance = std::abs(currentPos.x - tileCenterX) <= corneringTolerance;
+                    } else if (queued == MovementDir::LEFT || queued == MovementDir::RIGHT) {
+                        float tileCenterY = currentTile.y * tileSize + halfTile;
+                        withinTolerance = std::abs(currentPos.y - tileCenterY) <= corneringTolerance;
+                    }
+
+                    if (withinTolerance) {
+                        sf::Vector2i targetTile = currentTile;
+
+                        switch (queued) {
+                            case MovementDir::UP:
+                                targetTile.y -= 1;
+                                break;
+                            case MovementDir::DOWN:
+                                targetTile.y += 1;
+                                break;
+                            case MovementDir::LEFT:
+                                targetTile.x -= 1;
+                                if (targetTile.x < 0) targetTile.x = map.getWidth() - 1;
+                                break;
+                            case MovementDir::RIGHT:
+                                targetTile.x += 1;
+                                if (targetTile.x >= static_cast<int>(map.getWidth())) targetTile.x = 0;
+                                break;
+                            case MovementDir::STATIC:
+                                break;
+                        }
+
+                        if (!map.isWall(targetTile.x, targetTile.y)) {
+                            map.snapEntityToGrid(pacman);
+
+                            switch (queued) {
+                                case MovementDir::UP:
+                                    pacman.setActiveSprite("up_walking", 0);
+                                    break;
+                                case MovementDir::DOWN:
+                                    pacman.setActiveSprite("down_walking", 0);
+                                    break;
+                                case MovementDir::LEFT:
+                                    pacman.setActiveSprite("left_walking", 0);
+                                    break;
+                                case MovementDir::RIGHT:
+                                    pacman.setActiveSprite("right_walking", 0);
+                                    break;
+                                case MovementDir::STATIC:
+                                    break;
+                            }
+
+                            sf::Vector2f targetCenter = map.getTargetTileCenter(targetTile);
+                            pacman.startMove(queued, targetCenter);
+                            pacman.clearQueuedDirection();
+                        }
+                    }
+                }
+
                 if (!pacman.isCurrentlyMoving()) {
                     MovementDir nextDir = MovementDir::STATIC;
 
