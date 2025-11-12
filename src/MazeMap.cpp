@@ -60,10 +60,10 @@ bool MazeMap::loadMaze(const std::vector<int>& collisionData,
     return true;
 }
 
-void MazeMap::eatPellet(int x, int y) {
-    if (!isLegalTile(x, y)) return;
+void MazeMap::eatPellet(sf::Vector2i tilePos) {
+    if (!isLegalTile(tilePos)) return;
 
-    int tileIndex = x + y * width;
+    int tileIndex = convert2DCoords(tilePos);
 
     pelletEaten[tileIndex] = true;
 
@@ -73,13 +73,34 @@ void MazeMap::eatPellet(int x, int y) {
     }
 }
 
-bool MazeMap::hasPellet(int x, int y) const {
-    if (!isLegalTile(x, y)) return false;
+//void MazeMap::eatPellet(int x, int y) {
+//    if (!isLegalTile(x, y)) return;
+//
+//    int tileIndex = x + y * width;
+//
+//    pelletEaten[tileIndex] = true;
+//
+//    sf::Vertex* triangles = &pelletVertices[tileIndex * 6];
+//    for (int i = 0; i < 6; ++i) {
+//        triangles[i].color = sf::Color::Transparent;
+//    }
+//}
 
-    int tileIndex = x + y * width;
+bool MazeMap::hasPellet(sf::Vector2i tilePos) const {
+    if (!isLegalTile(tilePos)) return false;
+
+    int tileIndex = convert2DCoords(tilePos);
 
     return !pelletEaten[tileIndex] && pelletMap[tileIndex] > 0;
 }
+
+//bool MazeMap::hasPellet(int x, int y) const {
+//    if (!isLegalTile(x, y)) return false;
+//
+//    int tileIndex = x + y * width;
+//
+//    return !pelletEaten[tileIndex] && pelletMap[tileIndex] > 0;
+//}
 
 PelletType MazeMap::getPelletType(sf::Vector2i tilePos) const {
     int tileIndex = tilePos.x + tilePos.y * width;
@@ -91,17 +112,30 @@ PelletType MazeMap::getPelletType(sf::Vector2i tilePos) const {
     return PelletType::NONE;
 }
 
-bool MazeMap::isWall(int x, int y) const {
-    if (!isLegalTile(x, y)) return true;
+bool MazeMap::isWall(sf::Vector2i tilePos) const {
+    if (!isLegalTile(tilePos)) return true;
 
-    int tileIndex = x + y * width;
+    int tileIndex = convert2DCoords(tilePos);
+
     return collisionMap[tileIndex] == 1;
 }
 
-bool MazeMap::isLegalTile(int x, int y) const {
-    return x >= 0 && x < static_cast<int>(width) &&
-           y >= 0 && y < static_cast<int>(height);
+//bool MazeMap::isWall(int x, int y) const {
+//    if (!isLegalTile(x, y)) return true;
+//
+//    int tileIndex = x + y * width;
+//    return collisionMap[tileIndex] == 1;
+//}
+
+bool MazeMap::isLegalTile(sf::Vector2i tilePos) const {
+    return tilePos.x >= 0 && tilePos.x < static_cast<int>(width) &&
+           tilePos.y >= 0 && tilePos.y < static_cast<int>(height);
 }
+
+//bool MazeMap::isLegalTile(int x, int y) const {
+//    return x >= 0 && x < static_cast<int>(width) &&
+//           y >= 0 && y < static_cast<int>(height);
+//}
 
 void MazeMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     if (!texture || !baseMazeSprite.has_value()) return;
@@ -196,7 +230,7 @@ bool MazeMap::entityCanMove(Entity& entity, MovementDir dir) {
             return true;
     };
 
-    return !isWall(targetTile.x, targetTile.y);
+    return !isWall(targetTile);
 };
 
 void MazeMap::handleTunnelWrapping(Entity& entity) {

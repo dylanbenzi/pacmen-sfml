@@ -252,7 +252,7 @@ void Game::run() {
                                 break;
                         }
 
-                        if (!map.isWall(targetTile.x, targetTile.y)) {
+                        if (!map.isWall(targetTile)) {
                             map.snapEntityToGrid(pacman);
 
                             switch (queued) {
@@ -328,8 +328,8 @@ void Game::run() {
 
                 map.handleTunnelWrapping(pacman);
 
-                if (map.hasPellet(currentPacmanTile.x, currentPacmanTile.y)) {
-                    map.eatPellet(currentPacmanTile.x, currentPacmanTile.y);
+                if (map.hasPellet(currentPacmanTile)) {
+                    map.eatPellet(currentPacmanTile);
 
                     switch (map.getPelletType(currentPacmanTile)) {
                         case PelletType::NONE:
