@@ -1,5 +1,7 @@
 #include "MazeMap.h"
+#include "Entity.h"
 #include <SFML/System/Vector2.hpp>
+#include <cmath>
 
 bool MazeMap::loadMaze(const std::vector<int>& collisionData,
                        const std::vector<int>& pelletData,
@@ -264,4 +266,12 @@ void MazeMap::handleTunnelWrapping(Entity& entity) {
         float newX = 0 * tileSize + halfTile;
         entity.setPosition({newX, pos.y});
     }
+};
+
+float MazeMap::distanceBetweenTiles(sf::Vector2i t1, sf::Vector2i t2) {
+    sf::Vector2i delta = {t1.x - t2.x, t1.y - t2.y};
+
+    float distance = std::sqrt(delta.x * delta.x + delta.y * delta.y);
+
+    return distance;
 };

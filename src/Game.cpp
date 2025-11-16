@@ -10,12 +10,12 @@
 #include "Game.h"
 #include "Blinky.h"
 #include "Clyde.h"
+#include "Entity.h"
 #include "Inky.h"
 #include "MazeMap.h"
 #include "Pinky.h"
 #include "ResourceManager.h"
 #include "Pacman.h"
-#include "Ghost.h"
 
 json Game::loadConfig(const std::filesystem::path& configPath) {
     std::ifstream file(configPath);
@@ -329,6 +329,12 @@ void Game::run() {
                 }
 
                 pacman.update();
+
+                //check if blinky is at an intersection
+                //if yes set target tile to pacmans tile
+                //calculate distance for all legal move options
+                //choose option with least distance for blinky to pacman
+
 
                 map.handleTunnelWrapping(pacman);
 

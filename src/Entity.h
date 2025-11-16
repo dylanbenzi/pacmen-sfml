@@ -16,6 +16,8 @@
 #include <string>
 #include <vector>
 
+class MazeMap;
+
 enum class MovementDir {
     STATIC,
     UP,
@@ -35,7 +37,8 @@ public:
                currentDirection(MovementDir::STATIC),
                queuedDirection(MovementDir::STATIC),
                targetPosition(std::nullopt),
-               isMoving(false) {};
+               isMoving(false),
+               mazeMap(nullptr) {};
 
     void setAnimationTiles(sf::Texture& textureSheet, sf::Vector2i pixelLocation, const std::string& animationName, sf::Vector2i tileSize, unsigned int animationTiles, unsigned int pixelGap);
 
@@ -61,11 +64,21 @@ public:
 
     void setMovementSpeed(sf::Vector2f newMovementSpeed) { movementSpeed = newMovementSpeed; }
 
+    void setCurrentMazeTile(sf::Vector2i mazeTile) {
+        currentMazeTile = mazeTile;
+    }
+
+    sf::Vector2i getCurrentMazeTile() { return currentMazeTile; }
+
     void adjustTargetPosition(sf::Vector2f offset) {
         if (targetPosition.has_value()) {
             targetPosition = targetPosition.value() + offset;
         }
     }
+
+    void setMazeMap(MazeMap* map) { mazeMap = map; }
+
+    MazeMap* getMazeMap() { return mazeMap; }
 
 protected:
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -84,7 +97,11 @@ protected:
 
     std::optional<sf::Vector2f> targetPosition;
 
+    sf::Vector2i currentMazeTile;
+
     bool isMoving;
+
+    MazeMap* mazeMap;
 };
 
 #endif

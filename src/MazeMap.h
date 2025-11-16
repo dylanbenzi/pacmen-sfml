@@ -6,7 +6,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 #include <filesystem>
-#include "Entity.h"
+
+class Entity;
+enum class MovementDir;
 
 enum class PelletType {
     NONE,
@@ -55,6 +57,8 @@ public:
     void handleTunnelWrapping(Entity& entity);
 
     bool isIntersectionTile(sf::Vector2i tileCoords) const;
+
+    float distanceBetweenTiles(sf::Vector2i t1, sf::Vector2i t2);
 
     unsigned int getWidth() const { return width; }
     unsigned int getHeight() const { return height; }
