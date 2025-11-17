@@ -194,9 +194,10 @@ void Game::run() {
     const float vulnerableDurationSeconds = 8.0f;  // Duration of vulnerable mode
 
     auto window = sf::RenderWindow(sf::VideoMode(windowRes), windowName);
+    sf::Listener::setGlobalVolume(gameVolume);
 
     sf::Sound sound(*resources.getSound("start"));
-    //sound.play();
+    sound.play();
 
     sf::Sound pellet0(*resources.getSound("eat_dot_0"));
     sf::Sound pellet1(*resources.getSound("eat_dot_1"));
@@ -484,9 +485,9 @@ void Game::run() {
                     scoreText.setString(std::to_string(score));
 
                     if (pelletSoundCount % 2) {
-                        //pellet1.play();
+                        pellet1.play();
                     } else {
-                        //pellet0.play();
+                        pellet0.play();
                     }
 
                     pelletSoundCount++;
