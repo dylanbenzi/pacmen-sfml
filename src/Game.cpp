@@ -459,8 +459,8 @@ void Game::run() {
                     map.handleTunnelWrapping(clyde);
                 }
 
-                if (map.hasPellet(currentPacmanTile.x, currentPacmanTile.y)) {
-                    map.eatPellet(currentPacmanTile.x, currentPacmanTile.y);
+                if (map.hasPellet(currentPacmanTile)) {
+                    map.eatPellet(currentPacmanTile);
 
                     switch (map.getPelletType(currentPacmanTile)) {
                         case PelletType::NONE:
