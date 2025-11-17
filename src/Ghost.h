@@ -55,6 +55,8 @@ private:
 	int boxBoundaryY;
 	bool isVulnerable;
 	Mode previousMode;  // Mode to return to after vulnerable ends
+protected:
+	sf::Vector2i targetTile;
 };
 
 #endif
