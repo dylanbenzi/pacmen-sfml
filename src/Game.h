@@ -29,6 +29,7 @@ private:
 
     sf::Vector2u windowRes = {672, 810};
     std::string windowName = "Pacmen";
+    const float gameVolume = 30;
 };
 
 #endif
