@@ -1,5 +1,7 @@
 #include "MazeMap.h"
+#include "Entity.h"
 #include <SFML/System/Vector2.hpp>
+#include <cmath>
 
 bool MazeMap::loadMaze(const std::vector<int>& collisionData,
                        const std::vector<int>& pelletData,
@@ -60,10 +62,10 @@ bool MazeMap::loadMaze(const std::vector<int>& collisionData,
     return true;
 }
 
-void MazeMap::eatPellet(int x, int y) {
-    if (!isLegalTile(x, y)) return;
+void MazeMap::eatPellet(sf::Vector2i tilePos) {
+    if (!isLegalTile(tilePos)) return;
 
-    int tileIndex = x + y * width;
+    int tileIndex = convert2DCoords(tilePos);
 
     pelletEaten[tileIndex] = true;
 
@@ -73,13 +75,34 @@ void MazeMap::eatPellet(int x, int y) {
     }
 }
 
-bool MazeMap::hasPellet(int x, int y) const {
-    if (!isLegalTile(x, y)) return false;
+//void MazeMap::eatPellet(int x, int y) {
+//    if (!isLegalTile(x, y)) return;
+//
+//    int tileIndex = x + y * width;
+//
+//    pelletEaten[tileIndex] = true;
+//
+//    sf::Vertex* triangles = &pelletVertices[tileIndex * 6];
+//    for (int i = 0; i < 6; ++i) {
+//        triangles[i].color = sf::Color::Transparent;
+//    }
+//}
 
-    int tileIndex = x + y * width;
+bool MazeMap::hasPellet(sf::Vector2i tilePos) const {
+    if (!isLegalTile(tilePos)) return false;
+
+    int tileIndex = convert2DCoords(tilePos);
 
     return !pelletEaten[tileIndex] && pelletMap[tileIndex] > 0;
 }
+
+//bool MazeMap::hasPellet(int x, int y) const {
+//    if (!isLegalTile(x, y)) return false;
+//
+//    int tileIndex = x + y * width;
+//
+//    return !pelletEaten[tileIndex] && pelletMap[tileIndex] > 0;
+//}
 
 PelletType MazeMap::getPelletType(sf::Vector2i tilePos) const {
     int tileIndex = tilePos.x + tilePos.y * width;
@@ -91,17 +114,47 @@ PelletType MazeMap::getPelletType(sf::Vector2i tilePos) const {
     return PelletType::NONE;
 }
 
-bool MazeMap::isWall(int x, int y) const {
-    if (!isLegalTile(x, y)) return true;
+bool MazeMap::isWall(sf::Vector2i tilePos) const {
+    if (!isLegalTile(tilePos)) return true;
 
-    int tileIndex = x + y * width;
+    int tileIndex = convert2DCoords(tilePos);
+
     return collisionMap[tileIndex] == 1;
 }
 
-bool MazeMap::isLegalTile(int x, int y) const {
-    return x >= 0 && x < static_cast<int>(width) &&
-           y >= 0 && y < static_cast<int>(height);
+//bool MazeMap::isWall(int x, int y) const {
+//    if (!isLegalTile(x, y)) return true;
+//
+//    int tileIndex = x + y * width;
+//    return collisionMap[tileIndex] == 1;
+//}
+
+bool MazeMap::isLegalTile(sf::Vector2i tilePos) const {
+    return tilePos.x >= 0 && tilePos.x < static_cast<int>(width) &&
+           tilePos.y >= 0 && tilePos.y < static_cast<int>(height);
 }
+
+//bool MazeMap::isLegalTile(int x, int y) const {
+//    return x >= 0 && x < static_cast<int>(width) &&
+//           y >= 0 && y < static_cast<int>(height);
+//}
+
+bool MazeMap::isIntersectionTile(sf::Vector2i tilePos) const {
+    // true if more than two surrounding tiles are not walls
+
+    int surroundingMovementTiles = 0;
+
+    // +x (right)
+    if (!isWall({tilePos.x + 1, tilePos.y})) surroundingMovementTiles++;
+    // -x (left)
+    if (!isWall({tilePos.x - 1, tilePos.y})) surroundingMovementTiles++;
+    // +y (down)
+    if (!isWall({tilePos.x, tilePos.y + 1})) surroundingMovementTiles++;
+    // -y (up)
+    if (!isWall({tilePos.x, tilePos.y - 1})) surroundingMovementTiles++;
+
+    return surroundingMovementTiles > 2;
+};
 
 void MazeMap::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     if (!texture || !baseMazeSprite.has_value()) return;
@@ -196,7 +249,7 @@ bool MazeMap::entityCanMove(Entity& entity, MovementDir dir) {
             return true;
     };
 
-    return !isWall(targetTile.x, targetTile.y);
+    return !isWall(targetTile);
 };
 
 void MazeMap::handleTunnelWrapping(Entity& entity) {
@@ -213,4 +266,12 @@ void MazeMap::handleTunnelWrapping(Entity& entity) {
         float newX = 0 * tileSize + halfTile;
         entity.setPosition({newX, pos.y});
     }
+};
+
+float MazeMap::distanceBetweenTiles(sf::Vector2i t1, sf::Vector2i t2) {
+    sf::Vector2i delta = {t1.x - t2.x, t1.y - t2.y};
+
+    float distance = std::sqrt(delta.x * delta.x + delta.y * delta.y);
+
+    return distance;
 };

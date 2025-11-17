@@ -6,7 +6,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 #include <filesystem>
-#include "Entity.h"
+
+class Entity;
+enum class MovementDir;
 
 enum class PelletType {
     NONE,
@@ -25,16 +27,22 @@ public:
                   sf::Vector2u baseMazeTexturePos,
                   sf::Vector2u pelletMazeTexturePos);
 
-    void eatPellet(int x, int y);
+    //void eatPellet(int x, int y);
+    void eatPellet(sf::Vector2i tilePos);
 
-    bool hasPellet(int x, int y) const;
+    //bool hasPellet(int x, int y) const;
+    bool hasPellet(sf::Vector2i tilePos) const;
 
     PelletType getPelletType(sf::Vector2i tilePos) const;
 
-    bool isWall(int x, int y) const;
+    //bool isWall(int x, int y) const;
+    bool isWall(sf::Vector2i tilePos) const;
 
-    int convert2DCoords(int x, int y) const { return x + y * width; }
-    bool isLegalTile(int x, int y) const;
+    //int convert2DCoords(int x, int y) const { return x + y * width; }
+    int convert2DCoords(sf::Vector2i tilePos) const { return tilePos.x + tilePos.y * width; }
+
+    //bool isLegalTile(int x, int y) const;
+    bool isLegalTile(sf::Vector2i tilePos) const;
 
     bool entityCanMove(Entity& entity, MovementDir dir);
 
@@ -47,6 +55,10 @@ public:
     void snapEntityToGrid(Entity& entity);
 
     void handleTunnelWrapping(Entity& entity);
+
+    bool isIntersectionTile(sf::Vector2i tileCoords) const;
+
+    float distanceBetweenTiles(sf::Vector2i t1, sf::Vector2i t2);
 
     unsigned int getWidth() const { return width; }
     unsigned int getHeight() const { return height; }

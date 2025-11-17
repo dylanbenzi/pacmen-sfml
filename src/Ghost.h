@@ -2,6 +2,7 @@
 #define GHOST_H
 
 #include "Entity.h"
+#include <SFML/System/Vector2.hpp>
 
 class MazeMap;
 class Pacman;
