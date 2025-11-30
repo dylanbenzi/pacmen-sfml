@@ -1,3 +1,4 @@
+![Pacman icon](g)
 # Pacmen SFML
 
 A classic Pac-Man game implementation built with C++ and SFML 3.
