@@ -1,7 +1,3 @@
-# Pacmen Project Licenses
-
-This project and any software is available under the MIT License.
-
 ## MIT License
 
 Copyright (c) 2025 Aiden Scalf, Dylan Benzi, Dylan Frenchman, and Mihails Balalajs
