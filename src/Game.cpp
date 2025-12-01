@@ -193,8 +193,13 @@ void Game::run() {
     bool vulnerableModeActive = false;
     const float vulnerableDurationSeconds = 8.0f;  // Duration of vulnerable mode
 
-    auto window = sf::RenderWindow(sf::VideoMode(windowRes), windowName);
+    auto window = sf::RenderWindow(sf::VideoMode(windowRes), windowName, sf::Style::Titlebar | sf::Style::Close);
     sf::Listener::setGlobalVolume(gameVolume);
+
+    sf::Image icon;
+    if(icon.loadFromFile("assets/icons/pacman.png")) {
+        window.setIcon(icon);
+    }
 
     sf::Sound sound(*resources.getSound("start"));
     sound.play();
